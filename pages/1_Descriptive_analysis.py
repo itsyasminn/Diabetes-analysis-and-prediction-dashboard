@@ -10,7 +10,9 @@ from streamlit_folium import st_folium
 
 st.title("Diabetes Prevalence in Kenya")
 
-csv_path = os.path.join("..", "Data", "cfafrica-data-team-outbreak-covid19-data-openafrica-uploads-kenya-diabetes (1).csv")
+csv_path = os.path.join(os.path.dirname(__file__), "..", "Data",
+                        "cfafrica-data-team-outbreak-covid19-data-openafrica-uploads-kenya-diabetes (1).csv")
+
 df = pd.read_csv(csv_path)
 
 df["Geography"] = df["Geography"].str.upper()
