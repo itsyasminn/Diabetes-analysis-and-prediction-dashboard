@@ -1,14 +1,17 @@
 import streamlit as st
 import pandas as pd
+import os
 import plotly.express as px
 import folium
 import geopandas as gpd
 import json
 from streamlit_folium import st_folium
 
+
 st.title("Diabetes Prevalence in Kenya")
 
-df = pd.read_csv("C:\\Users\\DELL\\Documents\\Yasmin's assignments\\2025 Q2\\Diabetes prediction dashboard\Data\\cfafrica-data-team-outbreak-covid19-data-openafrica-uploads-kenya-diabetes (1).csv")
+csv_path = os.path.join("..", "Data", "cfafrica-data-team-outbreak-covid19-data-openafrica-uploads-kenya-diabetes (1).csv")
+df = pd.read_csv(csv_path)
 
 df["Geography"] = df["Geography"].str.upper()
 df["Geography"] = df["Geography"].replace({
