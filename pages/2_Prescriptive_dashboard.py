@@ -336,7 +336,8 @@ with right_col:
         name='Midpoint Ref.',
     ))
     fig_radar.update_layout(
-        **PLOTLY_LAYOUT,
+        paper_bgcolor="rgba(0,0,0,0)", plot_bgcolor="rgba(0,0,0,0)",
+        font=dict(color="#8899aa", family="Sora"),
         polar=dict(
             bgcolor="rgba(0,0,0,0)",
             radialaxis=dict(visible=True, range=[0,1], color="#334455",
@@ -407,9 +408,10 @@ else:
         st.plotly_chart(fig_scatter, use_container_width=True)
  
     # Table
-    with st.expander("📄 View Full Log"):
+    with st.expander(" View Full Log"):
         display_cols = ['id','pregnancies','glucose','blood_pressure','bmi','age','prediction','probability','timestamp']
         df_show = df_history[display_cols].copy()
         df_show['probability'] = (df_show['probability']*100).round(1).astype(str) + '%'
         df_show['prediction']  = df_show['prediction'].map({0:'✅ No Diabetes','1':'⚠️ Diabetes',1:'⚠️ Diabetes'})
         st.dataframe(df_show, use_container_width=True, height=350)
+ 
