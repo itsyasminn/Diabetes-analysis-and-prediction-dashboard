@@ -258,11 +258,11 @@ with left_col:
             },
             title={"text": "Diabetes Risk Score", "font": {"color": "#667788", "size": 13, "family": "Sora"}},
         ))
+        layout = {**PLOTLY_LAYOUT, 'margin': dict(l=20, r=20, t=30, b=10)}
         fig_gauge.update_layout(
-            **PLOTLY_LAYOUT,
-            height=280,
-            margin=dict(l=20, r=20, t=30, b=10),
-        )
+    **layout,
+    height=280,
+)
         st.plotly_chart(fig_gauge, use_container_width=True)
  
         # Donut chart
