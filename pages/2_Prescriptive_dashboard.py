@@ -143,7 +143,7 @@ html, body, [class*="css"] {
 </style>
 """, unsafe_allow_html=True)
  
-# ── Load model & DB ────────────────────────────────────────────────────────────
+# Load model & DB 
 @st.cache_resource
 def load_model():
     return joblib.load("best_diabetes_model.joblib")
@@ -174,7 +174,7 @@ PLOTLY_LAYOUT = dict(
     margin=dict(l=0, r=0, t=10, b=10),
 )
  
-# ── Page Header ────────────────────────────────────────────────────────────────
+# Page Header 
 st.markdown("""
 <div>
     <div class="page-tag">🤖 Page 2</div>
@@ -183,7 +183,7 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
  
-# ── Sidebar Inputs ─────────────────────────────────────────────────────────────
+# Sidebar Inputs
 with st.sidebar:
     st.markdown("### 🩺 Patient Information")
     st.markdown('<div class="input-hint">Adjust the values below to match patient measurements, then click <b>Run Prediction</b>.</div>', unsafe_allow_html=True)
@@ -200,7 +200,7 @@ with st.sidebar:
     st.markdown("---")
     predict_button = st.button("▶  Run Prediction", use_container_width=True, type="primary")
  
-# ── Layout: Result + Charts ────────────────────────────────────────────────────
+# Layout: Result + Charts 
 left_col, right_col = st.columns([1, 1], gap="large")
  
 with left_col:
@@ -351,7 +351,7 @@ with right_col:
     )
     st.plotly_chart(fig_radar, use_container_width=True)
  
-# ── Prediction History ─────────────────────────────────────────────────────────
+#  Prediction History 
 st.markdown('<div class="divider"></div>', unsafe_allow_html=True)
 st.markdown('<div class="section-title">📋 Prediction History</div>', unsafe_allow_html=True)
 st.markdown('<div class="section-sub">All past predictions logged in this session</div>', unsafe_allow_html=True)

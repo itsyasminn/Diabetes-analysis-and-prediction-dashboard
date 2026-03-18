@@ -113,7 +113,7 @@ html, body, [class*="css"] {
 </style>
 """, unsafe_allow_html=True)
  
-# ── Data ──────────────────────────────────────────────────────────────────────
+#  Data 
 csv_path = os.path.join(os.path.dirname(__file__), "..", "Data",
     "cfafrica-data-team-outbreak-covid19-data-openafrica-uploads-kenya-diabetes (1).csv")
 df = pd.read_csv(csv_path)
@@ -129,7 +129,7 @@ max_row   = df.loc[df[PREV_COL].idxmax()]
 min_row   = df.loc[df[PREV_COL].idxmin()]
 median_prev = df[PREV_COL].median()
  
-# ── Page Header ───────────────────────────────────────────────────────────────
+# Page Header 
 st.markdown("""
 <div class="page-header">
     <div class="page-tag">📊 Page 1</div>
@@ -138,7 +138,7 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
  
-# ── Metric Cards ──────────────────────────────────────────────────────────────
+# Metric Cards
 c1, c2, c3, c4 = st.columns(4)
 with c1:
     st.markdown(f"""
@@ -171,7 +171,7 @@ with c4:
  
 st.markdown('<div class="divider"></div>', unsafe_allow_html=True)
  
-# ── Choropleth Map ─────────────────────────────────────────────────────────────
+# Choropleth Map 
 st.markdown('<div class="section-title">🗺️ Prevalence Map</div>', unsafe_allow_html=True)
 st.markdown('<div class="section-sub">Hover over a county to see its diabetes rate</div>', unsafe_allow_html=True)
  
@@ -223,7 +223,7 @@ st_folium(m, width=None, height=500, use_container_width=True)
  
 st.markdown('<div class="divider"></div>', unsafe_allow_html=True)
  
-# ── Top 10 + Bottom 10 Side by Side ──────────────────────────────────────────
+#  Top 10 + Bottom 10 Side by Side 
 col_left, col_right = st.columns(2)
  
 with col_left:
@@ -270,7 +270,7 @@ with col_right:
  
 st.markdown('<div class="divider"></div>', unsafe_allow_html=True)
  
-# ── Full County Bar Chart ─────────────────────────────────────────────────────
+# Full County Bar Chart 
 st.markdown('<div class="section-title">📊 All Counties — Prevalence Comparison</div>', unsafe_allow_html=True)
 st.markdown('<div class="section-sub">Sorted by prevalence rate</div>', unsafe_allow_html=True)
  
@@ -299,7 +299,7 @@ st.plotly_chart(fig_all, use_container_width=True)
  
 st.markdown('<div class="divider"></div>', unsafe_allow_html=True)
  
-# ── Distribution + Box Plot ────────────────────────────────────────────────────
+#  Distribution + Box Plot 
 col_a, col_b = st.columns(2)
  
 with col_a:
@@ -344,7 +344,7 @@ with col_b:
     )
     st.plotly_chart(fig_box, use_container_width=True)
  
-# ── Raw Data Table ─────────────────────────────────────────────────────────────
+# Raw Data Table 
 with st.expander("📋 View Raw Data Table"):
     df_display = df[["Geography", PREV_COL]].sort_values(PREV_COL, ascending=False).reset_index(drop=True)
     df_display.columns = ["County", "Diabetes Prevalence (%)"]
