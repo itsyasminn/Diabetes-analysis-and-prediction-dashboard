@@ -7,6 +7,7 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
+# most of the styling is here — took a while to get the hero section right
 st.markdown("""
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700&family=Space+Mono:wght@400;700&display=swap');
@@ -15,7 +16,6 @@ html, body, [class*="css"] {
     font-family: 'Sora', sans-serif;
 }
 
-/* Dark teal background */
 .stApp {
     background: #0a1628;
 }
@@ -30,6 +30,7 @@ html, body, [class*="css"] {
     overflow: hidden;
 }
 
+/* decorative blobs behind the hero text */
 .hero-section::before {
     content: '';
     position: absolute;
@@ -84,22 +85,15 @@ html, body, [class*="css"] {
     margin: 0 0 40px 0;
 }
 
-.nav-cards {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-    margin-top: 10px;
-}
-
 .nav-card {
     background: rgba(255,255,255,0.03);
     border: 1px solid rgba(255,255,255,0.08);
     border-radius: 14px;
     padding: 28px;
-    transition: all 0.3s ease;
     cursor: pointer;
     position: relative;
     overflow: hidden;
+    transition: all 0.3s ease;
 }
 
 .nav-card:hover {
@@ -108,32 +102,10 @@ html, body, [class*="css"] {
     transform: translateY(-2px);
 }
 
-.nav-card-icon {
-    font-size: 28px;
-    margin-bottom: 12px;
-    display: block;
-}
-
-.nav-card-title {
-    font-size: 16px;
-    font-weight: 600;
-    color: #e0eaf4;
-    margin-bottom: 6px;
-}
-
-.nav-card-desc {
-    font-size: 13px;
-    color: #667788;
-    line-height: 1.5;
-}
-
-.nav-card-arrow {
-    position: absolute;
-    top: 28px; right: 24px;
-    color: #00c8b4;
-    font-size: 18px;
-    opacity: 0.5;
-}
+.nav-card-icon { font-size: 28px; margin-bottom: 12px; display: block; }
+.nav-card-title { font-size: 16px; font-weight: 600; color: #e0eaf4; margin-bottom: 6px; }
+.nav-card-desc { font-size: 13px; color: #667788; line-height: 1.5; }
+.nav-card-arrow { position: absolute; top: 28px; right: 24px; color: #00c8b4; font-size: 18px; opacity: 0.5; }
 
 .stat-row {
     display: flex;
@@ -141,10 +113,7 @@ html, body, [class*="css"] {
     margin-top: 40px;
 }
 
-.stat-item {
-    text-align: center;
-    flex: 1;
-}
+.stat-item { text-align: center; flex: 1; }
 
 .stat-value {
     font-family: 'Space Mono', monospace;
@@ -162,12 +131,7 @@ html, body, [class*="css"] {
     margin-top: 6px;
 }
 
-.stat-divider {
-    width: 1px;
-    background: rgba(255,255,255,0.07);
-    flex: 0;
-    min-width: 1px;
-}
+.stat-divider { width: 1px; background: rgba(255,255,255,0.07); flex: 0; min-width: 1px; }
 
 .info-strip {
     background: rgba(52, 152, 219, 0.06);
@@ -182,47 +146,42 @@ html, body, [class*="css"] {
     font-size: 13px;
     line-height: 1.5;
 }
-
-.sidebar-nav-label {
-    font-family: 'Space Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: #445566;
-    margin-bottom: 6px;
-}
 </style>
 """, unsafe_allow_html=True)
 
-# Sidebar
 with st.sidebar:
-    st.markdown('<div class="sidebar-nav-label">Navigation</div>', unsafe_allow_html=True)
-    st.markdown("Use the **Pages** menu above to navigate between sections.")
+    st.markdown(
+        '<p style="font-family: Space Mono, monospace; font-size:10px; letter-spacing:2px; '
+        'text-transform:uppercase; color:#445566;">Navigation</p>',
+        unsafe_allow_html=True
+    )
+    st.markdown("Use the **Pages** menu above to switch sections.")
     st.markdown("---")
     st.markdown("""
-    <div style="font-size:12px; color:#556677; line-height:1.7;">
-    📊 <b style="color:#8899aa">Descriptive</b><br>County-level prevalence across Kenya's 47 counties.<br><br>
-    🤖 <b style="color:#8899aa">Risk Prediction</b><br>ML-powered individual risk scoring with history tracking.
+    <div style="font-size:12px; color:#556677; line-height:1.8;">
+    <b style="color:#8899aa">Descriptive</b><br>
+    County-level prevalence across Kenya's 47 counties.<br><br>
+    <b style="color:#8899aa">Risk Prediction</b><br>
+    ML-powered individual risk scoring with history tracking.
     </div>
     """, unsafe_allow_html=True)
 
-# Hero
 st.markdown("""
 <div class="hero-section">
-    <div class="hero-badge">🩺 Kenya Health Analytics</div>
+    <div class="hero-badge">Kenya Health Analytics</div>
     <div class="hero-title">Diabetes<br>Analytics <span>Dashboard</span></div>
     <div class="hero-subtitle">
-        Explore county-level diabetes prevalence across Kenya and assess individual risk using a machine learning prediction model.
+        Explore county-level diabetes prevalence across Kenya and assess individual risk
+        using a machine learning prediction model.
     </div>
 </div>
 """, unsafe_allow_html=True)
 
-# Nav cards using Streamlit columns
 col1, col2 = st.columns(2, gap="medium")
+
 with col1:
     st.markdown("""
     <div class="nav-card">
-        <span class="nav-card-icon">📊</span>
         <span class="nav-card-arrow">→</span>
         <div class="nav-card-title">Descriptive Analysis</div>
         <div class="nav-card-desc">Choropleth maps, prevalence rankings, and distribution charts across all 47 counties.</div>
@@ -232,14 +191,12 @@ with col1:
 with col2:
     st.markdown("""
     <div class="nav-card">
-        <span class="nav-card-icon">🤖</span>
         <span class="nav-card-arrow">→</span>
         <div class="nav-card-title">Risk Prediction</div>
         <div class="nav-card-desc">Enter patient vitals to get an ML-powered diabetes risk score and view prediction history.</div>
     </div>
     """, unsafe_allow_html=True)
 
-# Stat row
 st.markdown("""
 <div class="stat-row">
     <div class="stat-item">
@@ -264,8 +221,14 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
+# small disclaimer at the bottom — important for a health tool
 st.markdown("""
 <div class="info-strip">
-    ℹ️ &nbsp; <span>This dashboard is intended for <b>analytical and educational purposes</b>. Predictions are model-based estimates and do not substitute for clinical diagnosis by a qualified healthcare professional.</span>
+    ℹ️ &nbsp;
+    <span>
+        This dashboard is for <b>analytical and educational purposes only</b>.
+        Predictions are model-based estimates and should not replace clinical diagnosis
+        by a qualified healthcare professional.
+    </span>
 </div>
 """, unsafe_allow_html=True)
